@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-//@RequestMapping("books")
+@RequestMapping("books")
 public class BookController {
 
     private List<Book> bookList;
@@ -57,9 +57,9 @@ public class BookController {
     // pass id as path variable
     // getBookById()
     @GetMapping("/get-book-by-id/{id}")
-    public  ResponseEntity getBookbyId(@PathVariable Integer id){
+    public  ResponseEntity getBookbyId(@PathVariable("id") Integer id){
 
-   for(int i=0;i<bookList.size();i++){
+    for(int i=0;i<bookList.size();i++){
        if(bookList.get(i).getId()==id){
            return new ResponseEntity<>(bookList.get(i),HttpStatus.OK);
        }
@@ -86,14 +86,14 @@ public class BookController {
     // get request /get-all-books
     // getAllBooks()
   @GetMapping("/get-all-books")
-   public  ResponseEntity<List<Book>> getuser(){
+   public  ResponseEntity getAllBooks(){
         return new ResponseEntity<>(bookList,HttpStatus.OK);
         }
     // delete request /delete-all-books
     // deleteAllBooks()
 
     @DeleteMapping("/delete-all-books")
-   public  ResponseEntity<String> deleteAllBooks(){
+   public  ResponseEntity deleteAllBooks(){
     //bookList.clear();
         bookList=new ArrayList<>();
         this.id=1;
