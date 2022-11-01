@@ -57,7 +57,7 @@ public class BookController {
     // pass id as path variable
     // getBookById()
     @GetMapping("/get-book-by-id/{id}")
-    ResponseEntity getBookbyId(@PathVariable Integer id){
+    public  ResponseEntity getBookbyId(@PathVariable Integer id){
 
    for(int i=0;i<bookList.size();i++){
        if(bookList.get(i).getId()==id){
@@ -73,7 +73,7 @@ public class BookController {
     // pass id as path variable
     // deleteBookById()
  @DeleteMapping("/delete-book-by-id/{id}")
-   ResponseEntity deleteBookById(@PathVariable Integer id){
+   public ResponseEntity deleteBookById(@PathVariable Integer id){
      for(int i=0;i<bookList.size();i++){
          if(bookList.get(i).getId()==id) {
              bookList.remove(i);
@@ -86,14 +86,14 @@ public class BookController {
     // get request /get-all-books
     // getAllBooks()
   @GetMapping("/get-all-books")
-        ResponseEntity<List<Book>> getuser(){
+   public  ResponseEntity<List<Book>> getuser(){
         return new ResponseEntity<>(bookList,HttpStatus.OK);
         }
     // delete request /delete-all-books
     // deleteAllBooks()
 
     @DeleteMapping("/delete-all-books")
-    ResponseEntity<String> deleteAllBooks(){
+   public  ResponseEntity<String> deleteAllBooks(){
     //bookList.clear();
         bookList=new ArrayList<>();
         this.id=1;
@@ -103,7 +103,7 @@ public class BookController {
     // pass author name as request param
     // getBooksByAuthor()
  @GetMapping("/get-books-by-author")
-    ResponseEntity getBooksByAuthor(@RequestParam("author") String author){
+   public  ResponseEntity getBooksByAuthor(@RequestParam("author") String author){
      for(Book b:bookList){
          if(b.getAuthor().equals(author)){
              return new ResponseEntity<>(b,HttpStatus.OK);
@@ -116,7 +116,7 @@ public class BookController {
     // pass genre name as request param
     // getBooksByGenre()
     @GetMapping("/get-books-by-genre")
-    ResponseEntity getBooksByGenre(@RequestParam("genre")String genre){
+    public ResponseEntity getBooksByGenre(@RequestParam("genre")String genre){
 
         for(Book b:bookList){
             if(b.getGenre().equals(genre)){
